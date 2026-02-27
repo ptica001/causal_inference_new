@@ -1,0 +1,8 @@
+cff-version: 1.2.0
+message: "If you use this project, please cite it."
+title: "Causal Inference Notes"
+type: software
+authors:
+  - name: "ptica001"
+repository-code: "https://github.com/ptica001/causal_inference"
+license: "MIT"

@@ -1,0 +1,24 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Causal Inference Notes"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: lectures/index.qmd
+        text: Lectures
+  sidebar:
+    style: docked
+    search: true
+
+format:
+  html:
+    theme: darkly
+    toc: true
+    code-fold: true
+
+execute:
+  freeze: auto
