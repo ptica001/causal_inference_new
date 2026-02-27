@@ -1,0 +1,7 @@
+---
+title: "Causal Inference Notes"
+---
+
+Добро пожаловать.
+
+- Перейти к лекциям: [Lectures](lectures/index.html)
