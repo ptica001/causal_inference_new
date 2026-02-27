@@ -8,7 +8,7 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - href: lectures/index.qmd
+      - href: causal_notes/lectures/index.qmd
         text: Lectures
   sidebar:
     style: docked
