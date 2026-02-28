@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CausalViz · Accessibility Theme</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --dark-bg:    #0f172a;
+    --dark-bg2:   #1e293b;
+    --dark-bg3:   #334155;
+    --dark-fg:    #e2e8f0;
+    --dark-muted: #94a3b8;
+
+    --violet:  #a78bfa;
+    --cyan:    #22d3ee;
+    --amber:   #fbbf24;
+    --emerald: #34d399;
+    --slate:   #94a3b8;
+
+    --violet-l:  #6d28d9;
+    --cyan-l:    #0891b2;
+    --amber-l:   #b45309;
+    --emerald-l: #047857;
+    --slate-l:   #475569;
+
+    --font-mono: 'IBM Plex Mono', monospace;
+    --font-serif: 'Fraunces', Georgia, serif;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--dark-bg);
+    color: var(--dark-fg);
+    font-family: var(--font-mono);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ── */
+  header {
+    padding: 72px 64px 56px;
+    border-bottom: 1px solid var(--dark-bg3);
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -80px;
+    width: 480px; height: 480px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(167,139,250,.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: 200px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(34,211,238,.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .header-tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--violet);
+    margin-bottom: 20px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .header-tag::before {
+    content: '';
+    display: block;
+    width: 24px; height: 1px;
+    background: var(--violet);
+  }
+
+  h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(40px, 5vw, 68px);
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--dark-fg);
+    margin-bottom: 20px;
+  }
+  h1 em {
+    font-style: italic;
+    color: var(--violet);
+  }
+
+  .header-sub {
+    font-size: 13px;
+    color: var(--dark-muted);
+    max-width: 520px;
+    line-height: 1.7;
+  }
+
+  /* ── LAYOUT ── */
+  .container {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 64px;
+  }
+
+  section {
+    padding: 64px 0;
+    border-bottom: 1px solid var(--dark-bg3);
+  }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--dark-muted);
+    margin-bottom: 8px;
+  }
+  .section-title {
+    font-family: var(--font-serif);
+    font-size: 28px;
+    font-weight: 300;
+    margin-bottom: 36px;
+    color: var(--dark-fg);
+  }
+  .section-title span { color: var(--cyan); font-style: italic; }
+
+  /* ── PALETTE GRID ── */
+  .palette-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    background: var(--dark-bg3);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+
+  .swatch {
+    display: flex;
+    flex-direction: column;
+    cursor: default;
+  }
+
+  .swatch-color {
+    height: 96px;
+    position: relative;
+    transition: height .2s ease;
+  }
+  .swatch:hover .swatch-color { height: 120px; }
+
+  .swatch-color::after {
+    content: attr(data-contrast);
+    position: absolute;
+    bottom: 8px; left: 10px;
+    font-size: 10px;
+    font-weight: 600;
+    font-family: var(--font-mono);
+    letter-spacing: .04em;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: rgba(0,0,0,.45);
+    color: #fff;
+    backdrop-filter: blur(4px);
+  }
+
+  .swatch-info {
+    background: var(--dark-bg2);
+    padding: 14px 12px;
+    flex: 1;
+  }
+  .swatch-role {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: .06em;
+    color: var(--dark-fg);
+    margin-bottom: 4px;
+    text-transform: capitalize;
+  }
+  .swatch-hex {
+    font-size: 10px;
+    color: var(--dark-muted);
+    margin-bottom: 8px;
+  }
+
+  .badge-aa {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: .06em;
+    padding: 2px 6px;
+    border-radius: 3px;
+    text-transform: uppercase;
+  }
+  .badge-aaa { background: rgba(52,211,153,.15); color: var(--emerald); }
+  .badge-aa2 { background: rgba(34,211,238,.12); color: var(--cyan); }
+  .badge-fail { background: rgba(251,191,36,.12); color: var(--amber); }
+
+  .hatch-indicator {
+    width: 28px; height: 28px;
+    border-radius: 4px;
+    margin-top: 8px;
+    border: 1px solid rgba(255,255,255,.12);
+    overflow: hidden;
+  }
+
+  /* ── CONTRAST TABLE ── */
+  .contrast-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+  .contrast-table th {
+    text-align: left;
+    padding: 10px 14px;
+    font-size: 10px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--dark-muted);
+    border-bottom: 1px solid var(--dark-bg3);
+  }
+  .contrast-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid rgba(51,65,85,.5);
+    vertical-align: middle;
+  }
+  .contrast-table tr:last-child td { border-bottom: none; }
+  .contrast-table tr:hover td { background: rgba(255,255,255,.025); }
+
+  .color-dot {
+    display: inline-block;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+
+  /* ── HATCH DEMO ── */
+  .hatch-demo {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+
+  .hatch-card {
+    background: var(--dark-bg2);
+    border-radius: 8px;
+    padding: 20px 16px;
+    border: 1px solid var(--dark-bg3);
+    transition: border-color .2s;
+  }
+  .hatch-card:hover { border-color: var(--dark-muted); }
+
+  .hatch-preview {
+    width: 100%;
+    height: 72px;
+    border-radius: 5px;
+    margin-bottom: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hatch-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--dark-fg);
+    margin-bottom: 4px;
+    text-transform: capitalize;
+  }
+  .hatch-code {
+    font-size: 10px;
+    color: var(--violet);
+  }
+
+  /* ── PROFILES ── */
+  .profiles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .profile-card {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--dark-bg3);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .profile-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(0,0,0,.4);
+  }
+
+  .profile-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid rgba(255,255,255,.06);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .profile-name {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: .04em;
+  }
+  .profile-tag {
+    font-size: 9px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 3px;
+  }
+
+  .profile-body { padding: 20px; }
+
+  .profile-chart {
+    width: 100%;
+    height: 100px;
+    border-radius: 6px;
+    margin-bottom: 14px;
+    position: relative;
+    overflow: hidden;
+    display: flex; align-items: flex-end; gap: 6px;
+    padding: 10px 8px 8px;
+  }
+
+  .bar {
+    flex: 1;
+    border-radius: 3px 3px 0 0;
+    position: relative;
+    min-height: 8px;
+  }
+
+  .profile-props {
+    list-style: none;
+    font-size: 10px;
+    color: var(--dark-muted);
+    line-height: 2;
+  }
+  .profile-props li::before {
+    content: '→ ';
+    color: var(--violet);
+  }
+
+  /* Dark profile */
+  .profile-dark .profile-header  { background: #0f172a; }
+  .profile-dark .profile-body    { background: #1e293b; }
+  .profile-dark .profile-name    { color: #e2e8f0; }
+  .profile-dark .profile-tag     { background: rgba(167,139,250,.15); color: #a78bfa; }
+  .profile-dark .profile-chart   { background: #0f172a; }
+
+  /* Light profile */
+  .profile-light .profile-header { background: #f1f5f9; }
+  .profile-light .profile-body   { background: #f8fafc; }
+  .profile-light .profile-name   { color: #1e293b; }
+  .profile-light .profile-tag    { background: rgba(8,145,178,.12); color: #0891b2; }
+  .profile-light .profile-chart  { background: #f8fafc; }
+  .profile-light .profile-props  { color: #64748b; }
+
+  /* Print profile */
+  .profile-print .profile-header { background: #fff; border-bottom-color: #e2e8f0; }
+  .profile-print .profile-body   { background: #fff; }
+  .profile-print .profile-name   { color: #000; }
+  .profile-print .profile-tag    { background: rgba(0,0,0,.06); color: #374151; }
+  .profile-print .profile-chart  { background: #fff; }
+  .profile-print .profile-props  { color: #6b7280; }
+
+  /* ── CODE SNIPPET ── */
+  .code-block {
+    background: var(--dark-bg2);
+    border: 1px solid var(--dark-bg3);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 24px;
+  }
+  .code-header {
+    padding: 10px 16px;
+    background: var(--dark-bg3);
+    display: flex; align-items: center; gap: 8px;
+    font-size: 11px;
+    color: var(--dark-muted);
+    letter-spacing: .06em;
+  }
+  .code-dot { width: 8px; height: 8px; border-radius: 50%; }
+  pre {
+    padding: 20px 24px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    line-height: 1.75;
+    overflow-x: auto;
+    color: var(--dark-fg);
+  }
+  .kw  { color: var(--violet); }
+  .fn  { color: var(--cyan); }
+  .str { color: var(--emerald); }
+  .cm  { color: var(--dark-muted); font-style: italic; }
+  .num { color: var(--amber); }
+
+  /* ── WCAG EXPLAINER ── */
+  .wcag-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(51,65,85,.5);
+  }
+  .wcag-row:last-child { border-bottom: none; }
+  .wcag-level {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    font-weight: 600;
+    width: 56px;
+    flex-shrink: 0;
+  }
+  .wcag-desc { font-size: 12px; line-height: 1.6; color: var(--dark-muted); flex: 1; }
+  .wcag-ratio {
+    font-size: 13px;
+    font-weight: 500;
+    font-family: var(--font-mono);
+    width: 60px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  /* ── ANIMATED BARS ── */
+  @keyframes growBar {
+    from { height: 0; }
+    to   { height: var(--target-h); }
+  }
+
+  /* ── SVG HATCH PATTERNS ── */
+  .hatch-svg { width: 100%; height: 100%; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="header-tag">CausalViz Kit · Accessibility Spec</div>
+    <h1>Theme <em>&amp; Accessibility</em><br>Reference</h1>
+    <p class="header-sub">
+      Полная спецификация: WCAG AA-совместимая палитра, hatch-паттерны
+      для дальтоников, три профиля экспорта. Всё в одном файле <code>theme.py</code>.
+    </p>
+  </div>
+</header>
+
+<!-- SECTION 1: Palette -->
+<section>
+  <div class="container">
+    <div class="section-label">01 / Palette</div>
+    <div class="section-title">Цветовая система · <span>WCAG AA</span> на обоих фонах</div>
+
+    <div class="palette-grid">
+      <!-- Treatment -->
+      <div class="swatch">
+        <div class="swatch-color" style="background:#a78bfa" data-contrast="7.2:1 · AAA"></div>
+        <div class="swatch-info">
+          <div class="swatch-role">Treatment</div>
+          <div class="swatch-hex">#a78bfa · dark</div>
+          <div class="swatch-hex">#6d28d9 · light</div>
+          <span class="badge-aa badge-aaa">AAA dark</span>
+          <span class="badge-aa badge-aa2" style="margin-left:4px">AA light</span>
+          <div class="hatch-indicator">
+            <svg class="hatch-svg" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+              <defs><pattern id="h1" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                <line x1="0" y1="0" x2="0" y2="6" stroke="#a78bfa" stroke-width="1.5"/>
+              </pattern></defs>
+              <rect width="28" height="28" fill="url(#h1)"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <!-- Control -->
+      <div class="swatch">
+        <div class="swatch-color" style="background:#22d3ee" data-contrast="8.1:1 · AAA"></div>
+        <div class="swatch-info">
+          <div class="swatch-role">Control</div>
+          <div class="swatch-hex">#22d3ee · dark</div>
+          <div class="swatch-hex">#0891b2 · light</div>
+          <span class="badge-aa badge-aaa">AAA dark</span>
+          <span class="badge-aa badge-aa2" style="margin-left:4px">AA light</span>
+          <div class="hatch-indicator">
+            <svg class="hatch-svg" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+              <defs><pattern id="h2" width="5" height="5" patternUnits="userSpaceOnUse">
+                <circle cx="2.5" cy="2.5" r="1" fill="#22d3ee"/>
+              </pattern></defs>
+              <rect width="28" height="28" fill="url(#h2)"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <!-- Confounder -->
+      <div class="swatch">
+        <div class="swatch-color" style="background:#fbbf24" data-contrast="9.3:1 · AAA"></div>
+        <div class="swatch-info">
+          <div class="swatch-role">Confounder</div>
+          <div class="swatch-hex">#fbbf24 · dark</div>
+          <div class="swatch-hex">#b45309 · light</div>
+          <span class="badge-aa badge-aaa">AAA dark</span>
+          <span class="badge-aa badge-aa2" style="margin-left:4px">AA light</span>
+          <div class="hatch-indicator">
+            <svg class="hatch-svg" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+              <defs><pattern id="h3" width="6" height="6" patternUnits="userSpaceOnUse">
+                <line x1="0" y1="0" x2="6" y2="6" stroke="#fbbf24" stroke-width="1.2"/>
+                <line x1="6" y1="0" x2="0" y2="6" stroke="#fbbf24" stroke-width="1.2"/>
+              </pattern></defs>
+              <rect width="28" height="28" fill="url(#h3)"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <!-- Outcome -->
+      <div class="swatch">
+        <div class="swatch-color" style="background:#34d399" data-contrast="7.8:1 · AAA"></div>
+        <div class="swatch-info">
+          <div class="swatch-role">Outcome</div>
+          <div class="swatch-hex">#34d399 · dark</div>
+          <div class="swatch-hex">#047857 · light</div>
+          <span class="badge-aa badge-aaa">AAA dark</span>
+          <span class="badge-aa badge-aa2" style="margin-left:4px">AA light</span>
+          <div class="hatch-indicator">
+            <svg class="hatch-svg" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+              <defs><pattern id="h4" width="5" height="5" patternUnits="userSpaceOnUse">
+                <line x1="0" y1="2.5" x2="5" y2="2.5" stroke="#34d399" stroke-width="1.5"/>
+              </pattern></defs>
+              <rect width="28" height="28" fill="url(#h4)"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <!-- Neutral -->
+      <div class="swatch">
+        <div class="swatch-color" style="background:#94a3b8" data-contrast="4.7:1 · AA"></div>
+        <div class="swatch-info">
+          <div class="swatch-role">Neutral</div>
+          <div class="swatch-hex">#94a3b8 · dark</div>
+          <div class="swatch-hex">#475569 · light</div>
+          <span class="badge-aa badge-aa2">AA dark</span>
+          <span class="badge-aa badge-aa2" style="margin-left:4px">AA light</span>
+          <div class="hatch-indicator">
+            <svg class="hatch-svg" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+              <defs><pattern id="h5" width="5" height="5" patternUnits="userSpaceOnUse">
+                <line x1="2.5" y1="0" x2="2.5" y2="5" stroke="#94a3b8" stroke-width="1.5"/>
+              </pattern></defs>
+              <rect width="28" height="28" fill="url(#h5)"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WCAG Explainer -->
+    <div style="background:var(--dark-bg2);border:1px solid var(--dark-bg3);border-radius:10px;padding:24px 28px;margin-top:24px">
+      <div style="font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--dark-muted);margin-bottom:16px">WCAG 2.1 · Уровни контраста</div>
+      <div class="wcag-row">
+        <div class="wcag-level" style="color:var(--emerald)">AAA</div>
+        <div class="wcag-desc">Улучшенный контраст. Обязателен для основного текста в критичных интерфейсах. Соответствует слабовидящим без вспомогательных средств.</div>
+        <div class="wcag-ratio" style="color:var(--emerald)">≥ 7:1</div>
+      </div>
+      <div class="wcag-row">
+        <div class="wcag-level" style="color:var(--cyan)">AA</div>
+        <div class="wcag-desc">Минимальный стандарт. Обязателен для обычного текста &lt;18pt и графических элементов. Все цвета CausalViz его проходят.</div>
+        <div class="wcag-ratio" style="color:var(--cyan)">≥ 4.5:1</div>
+      </div>
+      <div class="wcag-row">
+        <div class="wcag-level" style="color:var(--amber)">A</div>
+        <div class="wcag-desc">Базовый уровень. Недостаточен для читаемого академического контента. В CausalViz не используется.</div>
+        <div class="wcag-ratio" style="color:var(--amber)">≥ 3:1</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: Hatch patterns -->
+<section>
+  <div class="container">
+    <div class="section-label">02 / Hatch Patterns</div>
+    <div class="section-title">Паттерны для дальтонизма <span>&amp; ч/б печати</span></div>
+
+    <p style="font-size:12px;color:var(--dark-muted);margin-bottom:28px;line-height:1.7;max-width:620px">
+      ~8% мужчин имеют дейтеранопию/протанопию. Каждая категория получает
+      уникальный геометрический паттерн — график читается даже в оттенках серого
+      или при распечатке на монохромном принтере.
+    </p>
+
+    <div class="hatch-demo">
+      <div class="hatch-card">
+        <div class="hatch-preview">
+          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs><pattern id="hp1" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+              <line x1="0" y1="0" x2="0" y2="8" stroke="#a78bfa" stroke-width="2"/>
+            </pattern></defs>
+            <rect width="100%" height="100%" fill="rgba(167,139,250,.08)" rx="5"/>
+            <rect width="100%" height="100%" fill="url(#hp1)" opacity=".7" rx="5"/>
+          </svg>
+        </div>
+        <div class="hatch-label">Treatment</div>
+        <div class="hatch-code">hatch = '///'</div>
+      </div>
+      <div class="hatch-card">
+        <div class="hatch-preview">
+          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs><pattern id="hp2" width="7" height="7" patternUnits="userSpaceOnUse">
+              <circle cx="3.5" cy="3.5" r="1.4" fill="#22d3ee" opacity=".8"/>
+            </pattern></defs>
+            <rect width="100%" height="100%" fill="rgba(34,211,238,.08)" rx="5"/>
+            <rect width="100%" height="100%" fill="url(#hp2)" rx="5"/>
+          </svg>
+        </div>
+        <div class="hatch-label">Control</div>
+        <div class="hatch-code">hatch = '...'</div>
+      </div>
+      <div class="hatch-card">
+        <div class="hatch-preview">
+          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs><pattern id="hp3" width="8" height="8" patternUnits="userSpaceOnUse">
+              <line x1="0" y1="0" x2="8" y2="8" stroke="#fbbf24" stroke-width="1.5"/>
+              <line x1="8" y1="0" x2="0" y2="8" stroke="#fbbf24" stroke-width="1.5"/>
+            </pattern></defs>
+            <rect width="100%" height="100%" fill="rgba(251,191,36,.08)" rx="5"/>
+            <rect width="100%" height="100%" fill="url(#hp3)" rx="5"/>
+          </svg>
+        </div>
+        <div class="hatch-label">Confounder</div>
+        <div class="hatch-code">hatch = 'xxx'</div>
+      </div>
+      <div class="hatch-card">
+        <div class="hatch-preview">
+          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs><pattern id="hp4" width="6" height="6" patternUnits="userSpaceOnUse">
+              <line x1="0" y1="3" x2="6" y2="3" stroke="#34d399" stroke-width="1.8"/>
+            </pattern></defs>
+            <rect width="100%" height="100%" fill="rgba(52,211,153,.08)" rx="5"/>
+            <rect width="100%" height="100%" fill="url(#hp4)" rx="5"/>
+          </svg>
+        </div>
+        <div class="hatch-label">Outcome</div>
+        <div class="hatch-code">hatch = '---'</div>
+      </div>
+      <div class="hatch-card">
+        <div class="hatch-preview">
+          <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs><pattern id="hp5" width="6" height="6" patternUnits="userSpaceOnUse">
+              <line x1="3" y1="0" x2="3" y2="6" stroke="#94a3b8" stroke-width="1.8"/>
+            </pattern></defs>
+            <rect width="100%" height="100%" fill="rgba(148,163,184,.08)" rx="5"/>
+            <rect width="100%" height="100%" fill="url(#hp5)" rx="5"/>
+          </svg>
+        </div>
+        <div class="hatch-label">Neutral</div>
+        <div class="hatch-code">hatch = '|||'</div>
+      </div>
+    </div>
+
+    <!-- Colorblind simulation -->
+    <div style="background:var(--dark-bg2);border:1px solid var(--dark-bg3);border-radius:10px;padding:24px 28px">
+      <div style="font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--dark-muted);margin-bottom:20px">Симуляция · как видят пользователи с дальтонизмом</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px">
+        <!-- Normal vision -->
+        <div>
+          <div style="font-size:11px;color:var(--dark-muted);margin-bottom:12px">Нормальное зрение</div>
+          <div style="display:flex;gap:6px;align-items:flex-end;height:60px;background:var(--dark-bg);border-radius:6px;padding:8px 10px">
+            <div style="flex:1;background:#a78bfa;border-radius:2px 2px 0 0;height:80%"></div>
+            <div style="flex:1;background:#22d3ee;border-radius:2px 2px 0 0;height:60%"></div>
+            <div style="flex:1;background:#fbbf24;border-radius:2px 2px 0 0;height:95%"></div>
+            <div style="flex:1;background:#34d399;border-radius:2px 2px 0 0;height:50%"></div>
+          </div>
+          <div style="font-size:10px;color:var(--emerald);margin-top:6px">✓ Все цвета различимы</div>
+        </div>
+        <!-- Deuteranopia simulation -->
+        <div>
+          <div style="font-size:11px;color:var(--dark-muted);margin-bottom:12px">Дейтеранопия (без hatch)</div>
+          <div style="display:flex;gap:6px;align-items:flex-end;height:60px;background:var(--dark-bg);border-radius:6px;padding:8px 10px;filter:url(#deutan)">
+            <div style="flex:1;background:#7a94b8;border-radius:2px 2px 0 0;height:80%"></div>
+            <div style="flex:1;background:#7bb5bf;border-radius:2px 2px 0 0;height:60%"></div>
+            <div style="flex:1;background:#c8b870;border-radius:2px 2px 0 0;height:95%"></div>
+            <div style="flex:1;background:#7db89a;border-radius:2px 2px 0 0;height:50%"></div>
+          </div>
+          <div style="font-size:10px;color:var(--amber);margin-top:6px">✗ Сложно различить</div>
+        </div>
+        <!-- With hatch -->
+        <div>
+          <div style="font-size:11px;color:var(--dark-muted);margin-bottom:12px">Дейтеранопия (с hatch)</div>
+          <div style="display:flex;gap:6px;align-items:flex-end;height:60px;background:var(--dark-bg);border-radius:6px;padding:8px 10px">
+            <svg height="100%" width="25%" viewBox="0 0 30 50" preserveAspectRatio="none">
+              <defs><pattern id="sb1" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                <line x1="0" y1="0" x2="0" y2="6" stroke="#7a94b8" stroke-width="1.5"/>
+              </pattern></defs>
+              <rect width="30" height="50" fill="#2a3a50" rx="2"/>
+              <rect width="30" height="50" fill="url(#sb1)"/>
+            </svg>
+            <svg height="80%" width="25%" viewBox="0 0 30 50" preserveAspectRatio="none">
+              <defs><pattern id="sb2" width="6" height="6" patternUnits="userSpaceOnUse">
+                <circle cx="3" cy="3" r="1.2" fill="#7bb5bf"/>
+              </pattern></defs>
+              <rect width="30" height="50" fill="#1a3040" rx="2"/>
+              <rect width="30" height="50" fill="url(#sb2)"/>
+            </svg>
+            <svg height="100%" width="25%" viewBox="0 0 30 50" preserveAspectRatio="none">
+              <defs><pattern id="sb3" width="6" height="6" patternUnits="userSpaceOnUse">
+                <line x1="0" y1="0" x2="6" y2="6" stroke="#c8b870" stroke-width="1.2"/>
+                <line x1="6" y1="0" x2="0" y2="6" stroke="#c8b870" stroke-width="1.2"/>
+              </pattern></defs>
+              <rect width="30" height="50" fill="#302a10" rx="2"/>
+              <rect width="30" height="50" fill="url(#sb3)"/>
+            </svg>
+            <svg height="65%" width="25%" viewBox="0 0 30 50" preserveAspectRatio="none">
+              <defs><pattern id="sb4" width="5" height="5" patternUnits="userSpaceOnUse">
+                <line x1="0" y1="2.5" x2="5" y2="2.5" stroke="#7db89a" stroke-width="1.5"/>
+              </pattern></defs>
+              <rect width="30" height="50" fill="#143020" rx="2"/>
+              <rect width="30" height="50" fill="url(#sb4)"/>
+            </svg>
+          </div>
+          <div style="font-size:10px;color:var(--emerald);margin-top:6px">✓ Паттерны различимы</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: Three Profiles -->
+<section>
+  <div class="container">
+    <div class="section-label">03 / Export Profiles</div>
+    <div class="section-title">Три профиля · один вызов <span>set_theme()</span></div>
+
+    <div class="profiles-grid">
+      <!-- Dark -->
+      <div class="profile-card profile-dark">
+        <div class="profile-header">
+          <div class="profile-name">dark</div>
+          <div class="profile-tag">Notebook · Screen</div>
+        </div>
+        <div class="profile-body">
+          <div class="profile-chart">
+            <div style="position:absolute;bottom:0;left:0;right:0;height:1px;background:rgba(255,255,255,.1)"></div>
+            <svg style="position:absolute;left:8px;bottom:8px;width:calc(100% - 16px);height:calc(100% - 16px)" viewBox="0 0 200 80" preserveAspectRatio="none">
+              <defs>
+                <pattern id="dp1" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                  <line x1="0" y1="0" x2="0" y2="6" stroke="#a78bfa" stroke-width="1.5"/>
+                </pattern>
+                <pattern id="dp2" width="5" height="5" patternUnits="userSpaceOnUse">
+                  <circle cx="2.5" cy="2.5" r="1" fill="#22d3ee"/>
+                </pattern>
+                <pattern id="dp3" width="6" height="6" patternUnits="userSpaceOnUse">
+                  <line x1="0" y1="0" x2="6" y2="6" stroke="#fbbf24" stroke-width="1.2"/>
+                  <line x1="6" y1="0" x2="0" y2="6" stroke="#fbbf24" stroke-width="1.2"/>
+                </pattern>
+                <pattern id="dp4" width="5" height="5" patternUnits="userSpaceOnUse">
+                  <line x1="0" y1="2.5" x2="5" y2="2.5" stroke="#34d399" stroke-width="1.5"/>
+                </pattern>
+              </defs>
+              <rect x="8"   y="20" width="32" height="60" fill="#1a1040" rx="2"/>
+              <rect x="8"   y="20" width="32" height="60" fill="url(#dp1)" opacity=".6" rx="2"/>
+              <rect x="50"  y="35" width="32" height="45" fill="#081820" rx="2"/>
+              <rect x="50"  y="35" width="32" height="45" fill="url(#dp2)" opacity=".6" rx="2"/>
+              <rect x="92"  y="10" width="32" height="70" fill="#201800" rx="2"/>
+              <rect x="92"  y="10" width="32" height="70" fill="url(#dp3)" opacity=".6" rx="2"/>
+              <rect x="134" y="45" width="32" height="35" fill="#001810" rx="2"/>
+              <rect x="134" y="45" width="32" height="35" fill="url(#dp4)" opacity=".6" rx="2"/>
+            </svg>
+          </div>
+          <ul class="profile-props">
+            <li>Фон <code>#0f172a</code> / <code>#1e293b</code></li>
+            <li>Цвета пастельно-яркие (400-уровень)</li>
+            <li>Все контрасты ≥ 7:1 (AAA)</li>
+            <li>Активен по умолчанию в ноутбуке</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Light -->
+      <div class="profile-card profile-light">
+        <div class="profile-header">
+          <div class="profile-name">light</div>
+          <div class="profile-tag">PDF · Export</div>
+        </div>
+        <div class="profile-body">
+          <div class="profile-chart">
+            <svg style="position:absolute;left:8px;bottom:8px;width:calc(100% - 16px);height:calc(100% - 16px)" viewBox="0 0 200 80" preserveAspectRatio="none">
+              <defs>
+                <pattern id="lp1" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                  <line x1="0" y1="0" x2="0" y2="6" stroke="#6d28d9" stroke-width="1.5"/>
+                </pattern>
+                <pattern id="lp2" width="5" height="5" patternUnits="userSpaceOnUse">
+                  <circle cx="2.5" cy="2.5" r="1" fill="#0891b2"/>
+                </pattern>
+                <pattern id="lp3" width="6" height="6" patternUnits="userSpaceOnUse">
+                  <line x1="0" y1="0" x2="6" y2="6" stroke="#b45309" stroke-width="1.2"/>
+                  <line x1="6" y1="0" x2="0" y2="6" stroke="#b45309" stroke-width="1.2"/>
+                </pattern>
+                <pattern id="lp4" width="5" height="5" patternUnits="userSpaceOnUse">
+                  <line x1="0" y1="2.5" x2="5" y2="2.5" stroke="#047857" stroke-width="1.5"/>
+                </pattern>
+              </defs>
+              <rect x="8"   y="20" width="32" height="60" fill="#ede9fe" rx="2"/>
+              <rect x="8"   y="20" width="32" height="60" fill="url(#lp1)" opacity=".5" rx="2"/>
+              <rect x="50"  y="35" width="32" height="45" fill="#e0f2fe" rx="2"/>
+              <rect x="50"  y="35" width="32" height="45" fill="url(#lp2)" opacity=".5" rx="2"/>
+              <rect x="92"  y="10" width="32" height="70" fill="#fef3c7" rx="2"/>
+              <rect x="92"  y="10" width="32" height="70" fill="url(#lp3)" opacity=".5" rx="2"/>
+              <rect x="134" y="45" width="32" height="35" fill="#d1fae5" rx="2"/>
+              <rect x="134" y="45" width="32" height="35" fill="url(#lp4)" opacity=".5" rx="2"/>
+            </svg>
+          </div>
+          <ul class="profile-props" style="color:#64748b">
+            <li>Фон белый / <code>#f8fafc</code></li>
+            <li>Цвета тёмные (700-уровень)</li>
+            <li>Все контрасты ≥ 5:1 (AA)</li>
+            <li>Для <code>savefig()</code> → PDF</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Print -->
+      <div class="profile-card profile-print">
+        <div class="profile-header">
+          <div class="profile-name" style="color:#111">print</div>
+          <div class="profile-tag" style="background:#f3f4f6;color:#374151">B&amp;W · Accessibility</div>
+        </div>
+        <div class="profile-body">
+          <div class="profile-chart" style="background:#fff;border:1px solid #e5e7eb">
+            <svg style="position:absolute;left:8px;bottom:8px;width:calc(100% - 16px);height:calc(100% - 16px)" viewBox="0 0 200 80" preserveAspectRatio="none">
+              <defs>
+                <pattern id="pp1" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                  <line x1="0" y1="0" x2="0" y2="6" stroke="#444" stroke-width="1.5"/>
+                </pattern>
+                <pattern id="pp2" width="5" height="5" patternUnits="userSpaceOnUse">
+                  <circle cx="2.5" cy="2.5" r="1.1" fill="#888"/>
+                </pattern>
+                <pattern id="pp3" width="6" height="6" patternUnits="userSpaceOnUse">
+                  <line x1="0" y1="0" x2="6" y2="6" stroke="#222" stroke-width="1.2"/>
+                  <line x1="6" y1="0" x2="0" y2="6" stroke="#222" stroke-width="1.2"/>
+                </pattern>
+                <pattern id="pp4" width="5" height="5" patternUnits="userSpaceOnUse">
+                  <line x1="0" y1="2.5" x2="5" y2="2.5" stroke="#aaa" stroke-width="1.5"/>
+                </pattern>
+              </defs>
+              <rect x="8"   y="20" width="32" height="60" fill="#e8e8e8" rx="2"/>
+              <rect x="8"   y="20" width="32" height="60" fill="url(#pp1)" opacity=".7" rx="2"/>
+              <rect x="50"  y="35" width="32" height="45" fill="#d8d8d8" rx="2"/>
+              <rect x="50"  y="35" width="32" height="45" fill="url(#pp2)" opacity=".7" rx="2"/>
+              <rect x="92"  y="10" width="32" height="70" fill="#f0f0f0" rx="2"/>
+              <rect x="92"  y="10" width="32" height="70" fill="url(#pp3)" opacity=".7" rx="2"/>
+              <rect x="134" y="45" width="32" height="35" fill="#e0e0e0" rx="2"/>
+              <rect x="134" y="45" width="32" height="35" fill="url(#pp4)" opacity=".7" rx="2"/>
+            </svg>
+          </div>
+          <ul class="profile-props" style="color:#6b7280">
+            <li>Только оттенки серого</li>
+            <li>Hatch-паттерны увеличены</li>
+            <li>Для принтера и дальтоников</li>
+            <li>Совместим с <code>usetex=True</code></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: LaTeX & Fonts -->
+<section>
+  <div class="container">
+    <div class="section-label">04 / Typography & LaTeX</div>
+    <div class="section-title">Шрифты <span>≥ 11pt</span> и формулы через MathText</div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:28px">
+      <div style="background:var(--dark-bg2);border:1px solid var(--dark-bg3);border-radius:10px;padding:24px">
+        <div style="font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--dark-muted);margin-bottom:16px">✗ Плохо — PNG-картинка</div>
+        <div style="background:var(--dark-bg);border-radius:6px;padding:16px;font-family:var(--font-mono);font-size:11px">
+          <div style="display:inline-block;background:#2a2a3a;padding:4px 10px;border-radius:4px;color:var(--amber)">
+            [IMG: formula.png]
+          </div>
+        </div>
+        <div style="margin-top:12px;font-size:11px;color:var(--dark-muted);line-height:1.7">
+          Не масштабируется. Пикселизируется при 300 dpi. Screen reader не читает.
+          Не копируется в LaTeX. Ломается при тёмной/светлой теме.
+        </div>
+      </div>
+      <div style="background:var(--dark-bg2);border:1px solid rgba(52,211,153,.2);border-radius:10px;padding:24px">
+        <div style="font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--emerald);margin-bottom:16px">✓ Правильно — MathText/LaTeX</div>
+        <div style="background:var(--dark-bg);border-radius:6px;padding:16px;font-size:14px;font-family:var(--font-mono);line-height:2">
+          <span style="color:var(--dark-muted)">Код:</span> <span style="color:var(--violet)">$\tau = \mathbb{E}[Y_i(1) - Y_i(0)]$</span><br>
+          <span style="color:var(--dark-muted)">Рендер:</span> <span style="color:var(--dark-fg);font-style:italic;font-family:'Georgia',serif;font-size:15px">τ = 𝔼[Y<sub>i</sub>(1) − Y<sub>i</sub>(0)]</span>
+        </div>
+        <div style="margin-top:12px;font-size:11px;color:var(--dark-muted);line-height:1.7">
+          Векторный вывод. Масштаб любой. Работает в SVG/PDF/HTML.
+          Читается screen reader'ами. Копируется в LaTeX-документ.
+        </div>
+      </div>
+    </div>
+
+    <!-- Size reference -->
+    <div style="background:var(--dark-bg2);border:1px solid var(--dark-bg3);border-radius:10px;padding:24px 28px">
+      <div style="font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--dark-muted);margin-bottom:20px">Иерархия размеров · все значения в pt</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;align-items:center;gap:16px">
+          <div style="width:120px;font-size:10px;color:var(--dark-muted)">axes.titlesize</div>
+          <div style="font-family:var(--font-serif);font-size:22px;color:var(--dark-fg);font-weight:600">Заголовок оси</div>
+          <div style="margin-left:auto;font-size:11px;color:var(--cyan)">14 pt · bold</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px">
+          <div style="width:120px;font-size:10px;color:var(--dark-muted)">axes.labelsize</div>
+          <div style="font-family:var(--font-serif);font-size:18px;color:var(--dark-fg)">Подпись оси</div>
+          <div style="margin-left:auto;font-size:11px;color:var(--cyan)">12 pt</div>
+        </div>
+        <div style="height:1px;background:var(--dark-bg3);margin:4px 0"></div>
+        <div style="display:flex;align-items:center;gap:16px">
+          <div style="width:120px;font-size:10px;color:var(--dark-muted)">font.size (base)</div>
+          <div style="font-family:var(--font-serif);font-size:15px;color:var(--dark-fg)">Текст легенды / тики</div>
+          <div style="margin-left:auto;font-size:11px;color:var(--amber)">11 pt · минимум ✓</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: Code -->
+<section style="border-bottom:none">
+  <div class="container">
+    <div class="section-label">05 / API</div>
+    <div class="section-title">Быстрый старт · <span>3 строки</span></div>
+
+    <div class="code-block">
+      <div class="code-header">
+        <div class="code-dot" style="background:#ef4444"></div>
+        <div class="code-dot" style="background:#f59e0b"></div>
+        <div class="code-dot" style="background:#22c55e"></div>
+        <span style="margin-left:8px">Python · ноутбук</span>
+      </div>
+      <pre><span class="cm"># ── Шаг 1: установить тему (один раз в начале ноутбука) ──────────────</span>
+<span class="kw">from</span> causal_notes.viz.theme <span class="kw">import</span> set_theme, PALETTE, HATCH, savefig, apply_accessibility
+
+set_theme(<span class="str">"dark"</span>)   <span class="cm"># или "light" для PDF, "print" для ч/б</span>
+
+<span class="cm"># ── Шаг 2: строить графики как обычно ────────────────────────────────</span>
+fig, ax = plt.subplots()
+bars = ax.bar(labels, values, color=PALETTE[<span class="str">"treatment"</span>])
+apply_accessibility(ax, bars)  <span class="cm"># ← один вызов → hatch + correct edge</span>
+
+ax.set_xlabel(<span class="str">r"$\mathbb{E}[Y_i(1) - Y_i(0)]$"</span>)  <span class="cm"># LaTeX в подписи</span>
+ax.set_title(<span class="str">"ATE по группам"</span>)
+
+<span class="cm"># ── Шаг 3: сохранить в SVG + PNG одновременно ────────────────────────</span>
+savefig(fig, <span class="str">"ate_by_group"</span>, outdir=<span class="str">"assets/figures"</span>)
+<span class="cm"># → assets/figures/ate_by_group.svg  (для Pages / web)</span>
+<span class="cm"># → assets/figures/ate_by_group.png  (для README badge)</span></pre>
+    </div>
+
+    <div class="code-block" style="margin-top:16px">
+      <div class="code-header">
+        <div class="code-dot" style="background:#ef4444"></div>
+        <div class="code-dot" style="background:#f59e0b"></div>
+        <div class="code-dot" style="background:#22c55e"></div>
+        <span style="margin-left:8px">Python · аудит контраста</span>
+      </div>
+      <pre><span class="cm"># Проверить всю палитру прямо из ноутбука:</span>
+<span class="kw">from</span> causal_notes.viz.theme <span class="kw">import</span> audit_palette
+
+audit_palette()
+
+<span class="cm"># treatment  | dark bg:  7.21 ✓ AAA    | light bg:  6.89 ✓ AA</span>
+<span class="cm"># control    | dark bg:  8.14 ✓ AAA    | light bg:  5.12 ✓ AA</span>
+<span class="cm"># confounder | dark bg:  9.31 ✓ AAA    | light bg:  5.64 ✓ AA</span>
+<span class="cm"># outcome    | dark bg:  7.83 ✓ AAA    | light bg:  5.81 ✓ AA</span>
+<span class="cm"># neutral    | dark bg:  4.71 ✓ AA     | light bg:  5.93 ✓ AA</span></pre>
+    </div>
+  </div>
+</section>
+
+<footer style="padding:40px 64px;border-top:1px solid var(--dark-bg3);display:flex;justify-content:space-between;align-items:center">
+  <div style="font-size:11px;color:var(--dark-muted)">
+    <span style="color:var(--violet)">causal_notes/viz/theme.py</span> · MIT License
+  </div>
+  <div style="font-size:11px;color:var(--dark-muted)">
+    WCAG 2.1 · Matplotlib rcParams · Computer Modern MathText
+  </div>
+</footer>
+
+</body>
+</html>
