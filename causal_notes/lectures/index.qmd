@@ -1,7 +1,0 @@
----
-title: "Lectures"
----
-
-Здесь будут лекции курса.
-
-- Пример: `01_potential_outcomes` (добавишь позже как .ipynb/.qmd)

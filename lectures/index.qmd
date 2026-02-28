@@ -1,0 +1,10 @@
+﻿---
+title: "Lectures"
+---
+
+Здесь будут лекции курса.
+
+План:
+- 01 — Potential Outcomes
+- 02 — DAGs and d-separation
+- 03 — Backdoor adjustment

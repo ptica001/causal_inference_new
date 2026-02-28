@@ -1,0 +1,276 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="320" viewBox="0 0 1200 320" fill="none" role="img" aria-label="Causal Inference Notes logo">
+  <defs>
+    <!-- Background gradient -->
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="320" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#020617"/>
+      <stop offset="100%" stop-color="#030712"/>
+    </linearGradient>
+
+    <!-- Aurora blobs -->
+    <radialGradient id="aurora1" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#4F46E5" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#4F46E5" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="aurora2" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#0EA5E9" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#0EA5E9" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="aurora3" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#8B5CF6" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Node glows -->
+    <radialGradient id="glowZ" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00F5D4" stop-opacity="0.9"/>
+      <stop offset="60%" stop-color="#00C4A7" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#009E85" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowT" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#C084FC" stop-opacity="0.9"/>
+      <stop offset="60%" stop-color="#A855F7" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#7C3AED" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowY" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FCD34D" stop-opacity="0.9"/>
+      <stop offset="60%" stop-color="#F59E0B" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#D97706" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Edge gradient Z→T -->
+    <linearGradient id="edgeZT" x1="60" y1="95" x2="155" y2="95" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#00F5D4"/>
+      <stop offset="100%" stop-color="#C084FC"/>
+    </linearGradient>
+    <!-- Edge gradient Z→Y -->
+    <linearGradient id="edgeZY" x1="60" y1="105" x2="155" y2="185" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#00F5D4"/>
+      <stop offset="100%" stop-color="#FCD34D"/>
+    </linearGradient>
+    <!-- Edge gradient T→Y -->
+    <linearGradient id="edgeTY" x1="165" y1="110" x2="165" y2="180" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#C084FC"/>
+      <stop offset="100%" stop-color="#FCD34D"/>
+    </linearGradient>
+
+    <!-- Glow filter for nodes -->
+    <filter id="nodeGlow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Subtle glow for edges -->
+    <filter id="edgeGlow" x="-20%" y="-100%" width="140%" height="300%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Card outer glow -->
+    <filter id="cardGlow" x="-2%" y="-5%" width="104%" height="115%">
+      <feGaussianBlur stdDeviation="18" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.31  0 0 0 0 0.27  0 0 0 0 0.96  0 0 0 0.4 0" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Arrowhead markers -->
+    <marker id="arrowZT" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#C084FC" opacity="0.9"/>
+    </marker>
+    <marker id="arrowZY" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#FCD34D" opacity="0.9"/>
+    </marker>
+    <marker id="arrowTY" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#FCD34D" opacity="0.9"/>
+    </marker>
+
+    <!-- Dot pattern -->
+    <pattern id="dots" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="1" cy="1" r="0.8" fill="rgba(255,255,255,0.055)"/>
+    </pattern>
+
+    <!-- Clip for the card -->
+    <clipPath id="cardClip">
+      <rect x="20" y="20" width="1160" height="280" rx="24"/>
+    </clipPath>
+
+    <!-- Title gradient -->
+    <linearGradient id="titleGrad" x1="0" y1="0" x2="600" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#F8FAFC"/>
+      <stop offset="55%" stop-color="#E2E8F0"/>
+      <stop offset="100%" stop-color="#94A3B8"/>
+    </linearGradient>
+
+    <!-- Border gradient -->
+    <linearGradient id="borderGrad" x1="20" y1="20" x2="1180" y2="300" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="rgba(99,102,241,0.5)"/>
+      <stop offset="40%" stop-color="rgba(148,163,184,0.15)"/>
+      <stop offset="100%" stop-color="rgba(245,158,11,0.3)"/>
+    </linearGradient>
+
+    <!-- Icon bg gradient -->
+    <linearGradient id="iconBg" x1="0" y1="0" x2="1" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#1E1B4B"/>
+    </linearGradient>
+  </defs>
+
+  <!-- ════ CARD ════ -->
+  <rect x="20" y="20" width="1160" height="280" rx="24" fill="url(#bg)" filter="url(#cardGlow)"/>
+
+  <!-- Dot grid texture -->
+  <rect x="20" y="20" width="1160" height="280" rx="24" fill="url(#dots)" clip-path="url(#cardClip)"/>
+
+  <!-- Aurora blobs (clipped) -->
+  <ellipse cx="250" cy="200" rx="340" ry="200" fill="url(#aurora1)" clip-path="url(#cardClip)"/>
+  <ellipse cx="700" cy="80" rx="280" ry="180" fill="url(#aurora2)" clip-path="url(#cardClip)"/>
+  <ellipse cx="1050" cy="240" rx="220" ry="160" fill="url(#aurora3)" clip-path="url(#cardClip)"/>
+
+  <!-- Horizontal scan line accent -->
+  <rect x="20" y="159" width="1160" height="1" fill="rgba(255,255,255,0.03)" clip-path="url(#cardClip)"/>
+
+  <!-- Fine top highlight -->
+  <rect x="22" y="21" width="1156" height="1" rx="1" fill="rgba(255,255,255,0.08)" clip-path="url(#cardClip)"/>
+
+  <!-- Card border with gradient -->
+  <rect x="20" y="20" width="1160" height="280" rx="24" fill="none" stroke="url(#borderGrad)" stroke-width="1.2"/>
+
+  <!-- ════ ICON PANEL ════ -->
+  <g transform="translate(56 56)">
+    <!-- Icon background -->
+    <rect x="0" y="0" width="196" height="208" rx="20" fill="url(#iconBg)"/>
+    <rect x="0" y="0" width="196" height="208" rx="20" stroke="rgba(99,102,241,0.3)" stroke-width="1.2"/>
+    <!-- Inner top highlight -->
+    <rect x="1" y="1" width="194" height="1" rx="1" fill="rgba(255,255,255,0.06)"/>
+
+    <!-- Subtle grid inside icon -->
+    <line x1="65" y1="10" x2="65" y2="198" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+    <line x1="130" y1="10" x2="130" y2="198" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+    <line x1="10" y1="70" x2="186" y2="70" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+    <line x1="10" y1="140" x2="186" y2="140" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+
+    <!-- ── EDGES ── -->
+    <!-- Z → T -->
+    <path d="M 73 95 C 95 82, 118 82, 142 92"
+          stroke="url(#edgeZT)" stroke-width="2.2" stroke-linecap="round"
+          marker-end="url(#arrowZT)" filter="url(#edgeGlow)" opacity="0.9"/>
+    <!-- Z → Y -->
+    <path d="M 66 108 C 76 138, 112 162, 148 178"
+          stroke="url(#edgeZY)" stroke-width="2.2" stroke-linecap="round"
+          marker-end="url(#arrowZY)" filter="url(#edgeGlow)" opacity="0.9"/>
+    <!-- T → Y -->
+    <path d="M 162 112 C 164 138, 162 156, 162 173"
+          stroke="url(#edgeTY)" stroke-width="2.2" stroke-linecap="round"
+          marker-end="url(#arrowTY)" filter="url(#edgeGlow)" opacity="0.9"/>
+
+    <!-- ── NODES ── -->
+    <!-- Z node glow halo -->
+    <circle cx="62" cy="96" r="30" fill="url(#glowZ)" opacity="0.35"/>
+    <!-- Z node -->
+    <circle cx="62" cy="96" r="20" fill="#011a17" stroke="#00F5D4" stroke-width="1.8" filter="url(#nodeGlow)"/>
+    <circle cx="62" cy="96" r="12" fill="#00F5D4" opacity="0.15"/>
+    <text x="62" y="96" text-anchor="middle" dominant-baseline="middle"
+          font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="15" font-weight="700" fill="#00F5D4">Z</text>
+
+    <!-- T node glow halo -->
+    <circle cx="163" cy="96" r="30" fill="url(#glowT)" opacity="0.35"/>
+    <!-- T node -->
+    <circle cx="163" cy="96" r="20" fill="#12001a" stroke="#C084FC" stroke-width="1.8" filter="url(#nodeGlow)"/>
+    <circle cx="163" cy="96" r="12" fill="#C084FC" opacity="0.15"/>
+    <text x="163" y="96" text-anchor="middle" dominant-baseline="middle"
+          font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="15" font-weight="700" fill="#C084FC">T</text>
+
+    <!-- Y node glow halo -->
+    <circle cx="163" cy="186" r="30" fill="url(#glowY)" opacity="0.35"/>
+    <!-- Y node -->
+    <circle cx="163" cy="186" r="20" fill="#150d00" stroke="#FCD34D" stroke-width="1.8" filter="url(#nodeGlow)"/>
+    <circle cx="163" cy="186" r="12" fill="#FCD34D" opacity="0.15"/>
+    <text x="163" y="186" text-anchor="middle" dominant-baseline="middle"
+          font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="15" font-weight="700" fill="#FCD34D">Y</text>
+
+    <!-- do(T) pill -->
+    <rect x="14" y="18" width="68" height="24" rx="8"
+          fill="rgba(192,132,252,0.12)" stroke="rgba(192,132,252,0.45)" stroke-width="1"/>
+    <text x="48" y="30" text-anchor="middle" dominant-baseline="middle"
+          font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="11.5" font-weight="700" fill="#C084FC" letter-spacing="0.3">do(T)</text>
+  </g>
+
+  <!-- ════ WORDMARK ════ -->
+  <g transform="translate(300 0)">
+
+    <!-- Eyebrow label -->
+    <text x="2" y="102" dominant-baseline="middle"
+          font-family="ui-monospace,SFMono-Regular,Menlo,monospace"
+          font-size="10.5" font-weight="500" fill="#6366F1" letter-spacing="3.5">CAUSAL INFERENCE FRAMEWORK</text>
+
+    <!-- Vertical accent bar -->
+    <rect x="0" y="120" width="3" height="72" rx="1.5"
+          fill="url(#edgeZT)" opacity="0.8"/>
+
+    <!-- Main title -->
+    <text x="18" y="145" dominant-baseline="middle"
+          font-family="ui-sans-serif,system-ui,-apple-system,Helvetica,Arial"
+          font-size="62" font-weight="800" letter-spacing="-2" fill="url(#titleGrad)">Causal Inference</text>
+
+    <!-- "Notes" — lighter -->
+    <text x="18" y="202" dominant-baseline="middle"
+          font-family="ui-sans-serif,system-ui,-apple-system,Helvetica,Arial"
+          font-size="42" font-weight="300" letter-spacing="6" fill="rgba(148,163,184,0.75)">NOTES</text>
+
+    <!-- Separator dots -->
+    <circle cx="20" cy="238" r="2" fill="#6366F1" opacity="0.7"/>
+    <circle cx="30" cy="238" r="2" fill="#A855F7" opacity="0.5"/>
+    <circle cx="40" cy="238" r="2" fill="#0EA5E9" opacity="0.4"/>
+
+    <!-- Tag chips row -->
+    <g transform="translate(56 225)">
+      <!-- lectures -->
+      <rect x="0" y="0" width="80" height="26" rx="6" fill="rgba(99,102,241,0.12)" stroke="rgba(99,102,241,0.3)" stroke-width="1"/>
+      <text x="40" y="13" text-anchor="middle" dominant-baseline="middle"
+            font-family="ui-monospace,SFMono-Regular,Menlo,monospace"
+            font-size="10" font-weight="600" fill="#818CF8" letter-spacing="1">lectures</text>
+
+      <!-- diagnostics -->
+      <rect x="92" y="0" width="98" height="26" rx="6" fill="rgba(14,165,233,0.10)" stroke="rgba(14,165,233,0.28)" stroke-width="1"/>
+      <text x="141" y="13" text-anchor="middle" dominant-baseline="middle"
+            font-family="ui-monospace,SFMono-Regular,Menlo,monospace"
+            font-size="10" font-weight="600" fill="#38BDF8" letter-spacing="1">diagnostics</text>
+
+      <!-- visual toolkit -->
+      <rect x="202" y="0" width="104" height="26" rx="6" fill="rgba(245,158,11,0.10)" stroke="rgba(245,158,11,0.25)" stroke-width="1"/>
+      <text x="254" y="13" text-anchor="middle" dominant-baseline="middle"
+            font-family="ui-monospace,SFMono-Regular,Menlo,monospace"
+            font-size="10" font-weight="600" fill="#FBBF24" letter-spacing="1">visual toolkit</text>
+    </g>
+  </g>
+
+  <!-- Right-side decorative geometry -->
+  <g opacity="0.18" transform="translate(1040 40)">
+    <polygon points="80,0 140,50 140,130 80,180 20,130 20,50" fill="none" stroke="rgba(99,102,241,0.6)" stroke-width="1"/>
+    <polygon points="80,20 124,52 124,124 80,158 36,124 36,52" fill="none" stroke="rgba(14,165,233,0.4)" stroke-width="0.8"/>
+    <circle cx="80" cy="90" r="18" fill="none" stroke="rgba(192,132,252,0.5)" stroke-width="1"/>
+    <circle cx="80" cy="90" r="5" fill="rgba(192,132,252,0.3)"/>
+    <line x1="80" y1="0" x2="80" y2="20" stroke="rgba(99,102,241,0.5)" stroke-width="1"/>
+    <line x1="80" y1="158" x2="80" y2="180" stroke="rgba(99,102,241,0.5)" stroke-width="1"/>
+    <line x1="20" y1="50" x2="36" y2="52" stroke="rgba(99,102,241,0.5)" stroke-width="1"/>
+    <line x1="140" y1="50" x2="124" y2="52" stroke="rgba(99,102,241,0.5)" stroke-width="1"/>
+  </g>
+
+  <!-- Tiny corner glyph TL -->
+  <text x="38" y="37" font-family="ui-monospace,monospace" font-size="8" fill="rgba(99,102,241,0.35)" letter-spacing="1">◈ DAG</text>
+
+  <!-- Tiny corner glyph TR -->
+  <text x="1095" y="37" font-family="ui-monospace,monospace" font-size="8" fill="rgba(148,163,184,0.2)" letter-spacing="1">v2.0</text>
+
+  <!-- Bottom subtle rule -->
+  <path d="M 300 290 H 1130" stroke="rgba(99,102,241,0.12)" stroke-width="1" stroke-linecap="round"/>
+</svg>
