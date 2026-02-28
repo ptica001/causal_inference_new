@@ -44,17 +44,17 @@ import numpy as np
 
 PALETTE: dict[str, str] = {
     # Тёмный профиль (фон #0f172a) — контраст указан для него
-    "treatment":  "#a78bfa",   # violet-400   | contrast on dark: 7.2:1  ✓ AAA
-    "control":    "#22d3ee",   # cyan-400      | contrast on dark: 8.1:1  ✓ AAA
-    "confounder": "#fbbf24",   # amber-400     | contrast on dark: 9.3:1  ✓ AAA
-    "outcome":    "#34d399",   # emerald-400   | contrast on dark: 7.8:1  ✓ AAA
-    "neutral":    "#94a3b8",   # slate-400     | contrast on dark: 4.7:1  ✓ AA
+    "treatment": "#a78bfa",  # violet-400   | contrast on dark: 7.2:1  ✓ AAA
+    "control": "#22d3ee",  # cyan-400      | contrast on dark: 8.1:1  ✓ AAA
+    "confounder": "#fbbf24",  # amber-400     | contrast on dark: 9.3:1  ✓ AAA
+    "outcome": "#34d399",  # emerald-400   | contrast on dark: 7.8:1  ✓ AAA
+    "neutral": "#94a3b8",  # slate-400     | contrast on dark: 4.7:1  ✓ AA
     # Светлый профиль (фон #ffffff) — отдельная тёмная пара
-    "treatment_l":  "#6d28d9", # violet-700   | contrast on white: 6.9:1  ✓ AA
-    "control_l":    "#0891b2", # cyan-700      | contrast on white: 5.1:1  ✓ AA
-    "confounder_l": "#b45309", # amber-700     | contrast on white: 5.6:1  ✓ AA
-    "outcome_l":    "#047857", # emerald-700   | contrast on white: 5.8:1  ✓ AA
-    "neutral_l":    "#475569", # slate-600     | contrast on white: 5.9:1  ✓ AA
+    "treatment_l": "#6d28d9",  # violet-700   | contrast on white: 6.9:1  ✓ AA
+    "control_l": "#0891b2",  # cyan-700      | contrast on white: 5.1:1  ✓ AA
+    "confounder_l": "#b45309",  # amber-700     | contrast on white: 5.6:1  ✓ AA
+    "outcome_l": "#047857",  # emerald-700   | contrast on white: 5.8:1  ✓ AA
+    "neutral_l": "#475569",  # slate-600     | contrast on white: 5.9:1  ✓ AA
 }
 
 # ──────────────────────────────────────────────────────────────────────────────
@@ -62,11 +62,11 @@ PALETTE: dict[str, str] = {
 # ──────────────────────────────────────────────────────────────────────────────
 
 HATCH: dict[str, str] = {
-    "treatment":  "///",   # диагональ вправо   — плотная
-    "control":    "...",   # точки
-    "confounder": "xxx",   # крест
-    "outcome":    "---",   # горизонталь
-    "neutral":    "|||",   # вертикаль
+    "treatment": "///",  # диагональ вправо   — плотная
+    "control": "...",  # точки
+    "confounder": "xxx",  # крест
+    "outcome": "---",  # горизонталь
+    "neutral": "|||",  # вертикаль
 }
 
 # Порядок для циклического применения
@@ -76,18 +76,18 @@ SERIES_ORDER = ["treatment", "control", "confounder", "outcome", "neutral"]
 # Конфигурации профилей
 # ──────────────────────────────────────────────────────────────────────────────
 
-_DARK_BG    = "#0f172a"   # slate-900
-_DARK_BG2   = "#1e293b"   # slate-800  (axes bg)
-_DARK_FG    = "#e2e8f0"   # slate-200
-_DARK_GRID  = "#334155"   # slate-700
+_DARK_BG = "#0f172a"  # slate-900
+_DARK_BG2 = "#1e293b"  # slate-800  (axes bg)
+_DARK_FG = "#e2e8f0"  # slate-200
+_DARK_GRID = "#334155"  # slate-700
 
-_LIGHT_BG   = "#ffffff"
-_LIGHT_BG2  = "#f8fafc"   # slate-50
-_LIGHT_FG   = "#1e293b"   # slate-800
-_LIGHT_GRID = "#cbd5e1"   # slate-300
+_LIGHT_BG = "#ffffff"
+_LIGHT_BG2 = "#f8fafc"  # slate-50
+_LIGHT_FG = "#1e293b"  # slate-800
+_LIGHT_GRID = "#cbd5e1"  # slate-300
 
-_PRINT_BG   = "#ffffff"
-_PRINT_FG   = "#000000"
+_PRINT_BG = "#ffffff"
+_PRINT_FG = "#000000"
 _PRINT_GRID = "#9ca3af"
 
 # Минимальный размер шрифта для экспорта (pt)
@@ -95,20 +95,20 @@ _EXPORT_FONTSIZE = 11
 
 _PROFILES: dict[str, dict] = {
     "dark": {
-        "figure.facecolor":      _DARK_BG,
-        "axes.facecolor":        _DARK_BG2,
-        "axes.edgecolor":        _DARK_GRID,
-        "axes.labelcolor":       _DARK_FG,
-        "axes.titlecolor":       _DARK_FG,
-        "text.color":            _DARK_FG,
-        "xtick.color":           _DARK_FG,
-        "ytick.color":           _DARK_FG,
-        "grid.color":            _DARK_GRID,
-        "legend.facecolor":      _DARK_BG2,
-        "legend.edgecolor":      _DARK_GRID,
-        "legend.labelcolor":     _DARK_FG,
-        "savefig.facecolor":     _DARK_BG,
-        "axes.prop_cycle":       mpl.cycler(
+        "figure.facecolor": _DARK_BG,
+        "axes.facecolor": _DARK_BG2,
+        "axes.edgecolor": _DARK_GRID,
+        "axes.labelcolor": _DARK_FG,
+        "axes.titlecolor": _DARK_FG,
+        "text.color": _DARK_FG,
+        "xtick.color": _DARK_FG,
+        "ytick.color": _DARK_FG,
+        "grid.color": _DARK_GRID,
+        "legend.facecolor": _DARK_BG2,
+        "legend.edgecolor": _DARK_GRID,
+        "legend.labelcolor": _DARK_FG,
+        "savefig.facecolor": _DARK_BG,
+        "axes.prop_cycle": mpl.cycler(
             color=[
                 PALETTE["treatment"],
                 PALETTE["control"],
@@ -126,20 +126,20 @@ _PROFILES: dict[str, dict] = {
         ),
     },
     "light": {
-        "figure.facecolor":      _LIGHT_BG,
-        "axes.facecolor":        _LIGHT_BG2,
-        "axes.edgecolor":        _LIGHT_GRID,
-        "axes.labelcolor":       _LIGHT_FG,
-        "axes.titlecolor":       _LIGHT_FG,
-        "text.color":            _LIGHT_FG,
-        "xtick.color":           _LIGHT_FG,
-        "ytick.color":           _LIGHT_FG,
-        "grid.color":            _LIGHT_GRID,
-        "legend.facecolor":      _LIGHT_BG2,
-        "legend.edgecolor":      _LIGHT_GRID,
-        "legend.labelcolor":     _LIGHT_FG,
-        "savefig.facecolor":     _LIGHT_BG,
-        "axes.prop_cycle":       mpl.cycler(
+        "figure.facecolor": _LIGHT_BG,
+        "axes.facecolor": _LIGHT_BG2,
+        "axes.edgecolor": _LIGHT_GRID,
+        "axes.labelcolor": _LIGHT_FG,
+        "axes.titlecolor": _LIGHT_FG,
+        "text.color": _LIGHT_FG,
+        "xtick.color": _LIGHT_FG,
+        "ytick.color": _LIGHT_FG,
+        "grid.color": _LIGHT_GRID,
+        "legend.facecolor": _LIGHT_BG2,
+        "legend.edgecolor": _LIGHT_GRID,
+        "legend.labelcolor": _LIGHT_FG,
+        "savefig.facecolor": _LIGHT_BG,
+        "axes.prop_cycle": mpl.cycler(
             color=[
                 PALETTE["treatment_l"],
                 PALETTE["control_l"],
@@ -158,20 +158,20 @@ _PROFILES: dict[str, dict] = {
     },
     "print": {
         # Только серые тона + увеличенные паттерны для ч/б печати
-        "figure.facecolor":      _PRINT_BG,
-        "axes.facecolor":        _PRINT_BG,
-        "axes.edgecolor":        _PRINT_FG,
-        "axes.labelcolor":       _PRINT_FG,
-        "axes.titlecolor":       _PRINT_FG,
-        "text.color":            _PRINT_FG,
-        "xtick.color":           _PRINT_FG,
-        "ytick.color":           _PRINT_FG,
-        "grid.color":            _PRINT_GRID,
-        "legend.facecolor":      _PRINT_BG,
-        "legend.edgecolor":      _PRINT_FG,
-        "legend.labelcolor":     _PRINT_FG,
-        "savefig.facecolor":     _PRINT_BG,
-        "axes.prop_cycle":       mpl.cycler(
+        "figure.facecolor": _PRINT_BG,
+        "axes.facecolor": _PRINT_BG,
+        "axes.edgecolor": _PRINT_FG,
+        "axes.labelcolor": _PRINT_FG,
+        "axes.titlecolor": _PRINT_FG,
+        "text.color": _PRINT_FG,
+        "xtick.color": _PRINT_FG,
+        "ytick.color": _PRINT_FG,
+        "grid.color": _PRINT_GRID,
+        "legend.facecolor": _PRINT_BG,
+        "legend.edgecolor": _PRINT_FG,
+        "legend.labelcolor": _PRINT_FG,
+        "savefig.facecolor": _PRINT_BG,
+        "axes.prop_cycle": mpl.cycler(
             color=["#555555", "#888888", "#222222", "#aaaaaa", "#333333"],
             hatch=[
                 HATCH["treatment"],
@@ -190,41 +190,41 @@ _PROFILES: dict[str, dict] = {
 
 _COMMON: dict = {
     # Размеры
-    "figure.figsize":        (10, 6),
-    "figure.dpi":            120,
-    "savefig.dpi":           300,
+    "figure.figsize": (10, 6),
+    "figure.dpi": 120,
+    "savefig.dpi": 300,
     # Шрифты — LaTeX-совместимые, минимум 11pt
-    "font.size":             _EXPORT_FONTSIZE,
-    "axes.labelsize":        _EXPORT_FONTSIZE + 1,   # 12pt
-    "axes.titlesize":        _EXPORT_FONTSIZE + 3,   # 14pt, полужирный
-    "axes.titleweight":      "bold",
-    "xtick.labelsize":       _EXPORT_FONTSIZE,        # 11pt
-    "ytick.labelsize":       _EXPORT_FONTSIZE,
-    "legend.fontsize":       _EXPORT_FONTSIZE,
+    "font.size": _EXPORT_FONTSIZE,
+    "axes.labelsize": _EXPORT_FONTSIZE + 1,  # 12pt
+    "axes.titlesize": _EXPORT_FONTSIZE + 3,  # 14pt, полужирный
+    "axes.titleweight": "bold",
+    "xtick.labelsize": _EXPORT_FONTSIZE,  # 11pt
+    "ytick.labelsize": _EXPORT_FONTSIZE,
+    "legend.fontsize": _EXPORT_FONTSIZE,
     "legend.title_fontsize": _EXPORT_FONTSIZE + 1,
     # LaTeX
-    "text.usetex":           False,   # False = MathText (без LaTeX-установки)
-    "mathtext.fontset":      "cm",    # Computer Modern — «настоящий» LaTeX-вид
+    "text.usetex": False,  # False = MathText (без LaTeX-установки)
+    "mathtext.fontset": "cm",  # Computer Modern — «настоящий» LaTeX-вид
     # Сетка
-    "axes.grid":             True,
-    "grid.linestyle":        "--",
-    "grid.linewidth":        0.5,
-    "grid.alpha":            0.4,
+    "axes.grid": True,
+    "grid.linestyle": "--",
+    "grid.linewidth": 0.5,
+    "grid.alpha": 0.4,
     # Границы
-    "axes.spines.top":       False,
-    "axes.spines.right":     False,
+    "axes.spines.top": False,
+    "axes.spines.right": False,
     # Линии
-    "lines.linewidth":       2.0,
-    "lines.markersize":      7,
+    "lines.linewidth": 2.0,
+    "lines.markersize": 7,
     # Патчи — чтобы hatch был виден
-    "patch.linewidth":       1.2,
-    "hatch.linewidth":       1.2,
+    "patch.linewidth": 1.2,
+    "hatch.linewidth": 1.2,
     # Отступы
     "figure.constrained_layout.use": True,
     # Формат сохранения по умолчанию
-    "savefig.format":        "svg",
-    "savefig.bbox":          "tight",
-    "savefig.pad_inches":    0.1,
+    "savefig.format": "svg",
+    "savefig.bbox": "tight",
+    "savefig.pad_inches": 0.1,
 }
 
 # ──────────────────────────────────────────────────────────────────────────────
@@ -268,12 +268,12 @@ def set_theme(
         rc["font.family"] = "serif"
 
     if fontsize is not None:
-        rc["font.size"]          = fontsize
-        rc["axes.labelsize"]     = fontsize + 1
-        rc["axes.titlesize"]     = fontsize + 3
-        rc["xtick.labelsize"]    = fontsize
-        rc["ytick.labelsize"]    = fontsize
-        rc["legend.fontsize"]    = fontsize
+        rc["font.size"] = fontsize
+        rc["axes.labelsize"] = fontsize + 1
+        rc["axes.titlesize"] = fontsize + 3
+        rc["xtick.labelsize"] = fontsize
+        rc["ytick.labelsize"] = fontsize
+        rc["legend.fontsize"] = fontsize
 
     mpl.rcParams.update(rc)
 
@@ -376,10 +376,11 @@ def savefig(
 # Утилита: проверка контраста WCAG
 # ──────────────────────────────────────────────────────────────────────────────
 
+
 def _relative_luminance(hex_color: str) -> float:
     """Относительная яркость по WCAG 2.1."""
     hex_color = hex_color.lstrip("#")
-    r, g, b = (int(hex_color[i:i+2], 16) / 255 for i in (0, 2, 4))
+    r, g, b = (int(hex_color[i : i + 2], 16) / 255 for i in (0, 2, 4))
 
     def linearize(c: float) -> float:
         return c / 12.92 if c <= 0.03928 else ((c + 0.055) / 1.055) ** 2.4
@@ -414,25 +415,27 @@ def audit_palette(verbose: bool = True) -> dict[str, dict[str, float]]:
     results: dict[str, dict[str, float]] = {}
 
     for role in SERIES_ORDER:
-        dark_color  = PALETTE[role]
+        dark_color = PALETTE[role]
         light_color = PALETTE.get(role + "_l", dark_color)
 
-        r_dark  = contrast_ratio(dark_color, _DARK_BG)
+        r_dark = contrast_ratio(dark_color, _DARK_BG)
         r_light = contrast_ratio(light_color, _LIGHT_BG)
 
-        pass_dark  = r_dark  >= 4.5
+        pass_dark = r_dark >= 4.5
         pass_light = r_light >= 4.5
 
         results[role] = {
-            "dark_ratio":   round(r_dark, 2),
-            "light_ratio":  round(r_light, 2),
+            "dark_ratio": round(r_dark, 2),
+            "light_ratio": round(r_light, 2),
             "pass_dark_aa": pass_dark,
             "pass_light_aa": pass_light,
         }
 
         if verbose:
-            d_mark = "✓ AA" + ("A" if r_dark  >= 7.0 else "") if pass_dark  else "✗ FAIL"
-            l_mark = "✓ AA" + ("A" if r_light >= 7.0 else "") if pass_light else "✗ FAIL"
+            d_mark = "✓ AA" + ("A" if r_dark >= 7.0 else "") if pass_dark else "✗ FAIL"
+            l_mark = (
+                "✓ AA" + ("A" if r_light >= 7.0 else "") if pass_light else "✗ FAIL"
+            )
             print(
                 f"{role:<12} | dark bg: {r_dark:>5.2f} {d_mark:<8} "
                 f"| light bg: {r_light:>5.2f} {l_mark}"
@@ -445,11 +448,11 @@ def audit_palette(verbose: bool = True) -> dict[str, dict[str, float]]:
 # Удобные алиасы для ленивого импорта
 # ──────────────────────────────────────────────────────────────────────────────
 
-treatment  = PALETTE["treatment"]
-control    = PALETTE["control"]
+treatment = PALETTE["treatment"]
+control = PALETTE["control"]
 confounder = PALETTE["confounder"]
-outcome    = PALETTE["outcome"]
-neutral    = PALETTE["neutral"]
+outcome = PALETTE["outcome"]
+neutral = PALETTE["neutral"]
 
 COLORS = get_colors  # алиас
 HATCHES = get_hatches  # алиас
