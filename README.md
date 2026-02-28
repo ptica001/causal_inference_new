@@ -9,14 +9,14 @@
 
 Open the intro lecture in the cloud:
 
-- [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/OWNER/REPO/blob/main/causal_notes/lectures/01_potential_outcomes.ipynb)
-- [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/OWNER/REPO/main?labpath=causal_notes%2Flectures%2F01_potential_outcomes.ipynb)
+- [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ptica001/causal_inference_new/blob/main/causal_notes/lectures/01_potential_outcomes.ipynb)
+- [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ptica001/causal_inference_new/main?labpath=causal_notes%2Flectures%2F01_potential_outcomes.ipynb)
 
 ## Lectures map
 
 | #  | Topic | Colab | Binder | Status |
 |---:|-------|:-----:|:------:|:------:|
-| 01 | Potential Outcomes (ATE, SUTVA) | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/OWNER/REPO/blob/main/causal_notes/lectures/01_potential_outcomes.ipynb) | [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/OWNER/REPO/main?labpath=causal_notes%2Flectures%2F01_potential_outcomes.ipynb) | ✅ |
+| 01 | Potential Outcomes (ATE, SUTVA) | [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ptica001/causal_inference_new/blob/main/causal_notes/lectures/01_potential_outcomes.ipynb) | [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/ptica001/causal_inference_new/main?labpath=causal_notes%2Flectures%2F01_potential_outcomes.ipynb) | ✅ |
 | 02 | DAGs & d-separation | — | — | ⏳ |
 | 03 | Backdoor adjustment | — | — | ⏳ |
 | 04 | Propensity scores & overlap | — | — | ⏳ |
